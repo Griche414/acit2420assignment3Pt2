@@ -55,13 +55,26 @@ To create the user with the necessary criteria, run:
 sudo useradd -r -m -d /var/lib/webgen -s /usr/sbin/nologin
 ```
 
-Now we need to make bin and HTML folders inside webgen's home directory.
+Now we need to make bin, documents and HTML folders inside webgen's home directory.
 ```
 sudo mkdir -p /var/lib/webgen/bin
 sudo mkdir -p /var/lib/webgen/HTML
+sudo mkdir -p /var/lib/webgen/documents
 ```
 
-Ext, we need to copy your current generate_index directory to webgen's bin directory
+Now we will create two dummy files in the documents folder. Simply create both files with 
+```
+nvim file-one
+nvim file-two
+```
+
+Then copy-paste the files to the documents folder with
+```
+cp ./file-one /var/lib/webgen/documents
+cp ./file-one /var/lib/webgen/documents
+```
+
+Next, we also need to copy your current generate_index directory to webgen's bin directory
 ```
 cp ./generate_index /var/lib/webgen/bin
 ```
@@ -176,13 +189,20 @@ server {
   listen 80;
   listen [::]:80;
 
-  server_name <your server ip>;
+  server_name 159.223.202.168;
 
   root /var/lib/webgen/HTML;
   index index.html;
 
   	location / {
     	try_files $uri $uri/ =404;
+	}
+
+	location /documents {
+		/var/lib/webgen;
+		autoindex on;
+		autoindex_exact_size off;
+		autoindex_localtime on;
 	}
 }
 ```
