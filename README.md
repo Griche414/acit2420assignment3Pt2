@@ -1,8 +1,40 @@
-# acit2420-assignment3part1
+# acit2420-assignment3part2
 
-This project will allow you setup a static index.html that contains basic system information using the generate_index script inside your home directory's bin folder.
+This project will allow you setup a static index.html that contains basic system information using the generate_index script inside your home directory's bin folder. Additionally, 2 digitalocean Arch Linux droplets are also created to be attached to a load balancer, which is a helpful tool for server traffic managing.
 
-### Task 1 
+### Short manual on Creating the Server Droplets
+1.In the digital ocean website, create a project if you haven't already. 
+2.From the create drop down, select droplets.
+3.Choose San Francisco as the region
+4.In the Datacenter box, select San Francisco Data center 3.
+5.From choose an image tab, select the arch-linux image of your choice.
+6.For size, go with basic
+7.For CPU options, choose either Premium Intel 8$ per month or Premium AMD 7$ a month.
+8.Select your SSH key
+9.In finalize details section, increase your droplet to 2.
+10.Type a hostname of your choosing.
+11.Type web in the Tags box.
+12.Select a project.
+13.Create and done.
+
+With this, we have successfully created our servers. 
+
+### Creating the load balancer
+In the project where you created the 2 web servers, we will now create a load balancer to attach the server to.
+
+1.From the create drop down, select Load Balancers
+2.Select Regional for load balance type
+3.Select San Francisco 3 as the region
+4.Leave VPC network as default
+5.Select External(Public) for your network visibility
+5.Scaling configuration will be left as default
+7.Under connect droplets, type in web and select it.
+8.Enter a name for your load balancer if you'd like.
+9.Click create load balancer
+
+Congratulations, you have sucessfully created a load balancer with 2 servers attached.
+
+### Task 1
 
 We need to create a system user called webgen and supply the user with its own home directory and a login shell for a non-login user. webgen will have ownership of the directory in its entirety as well. 
 
