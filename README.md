@@ -297,12 +297,7 @@ sudo ufw status verbose
 Congratulations on reaching the end. You have completed all the tasks of running a nginx server with user webgen.
 
 You can enhance the error checking in the `generate_index` script by including write permission checks with
-```
-if [[ ! -w "$OUTPUT_DIR" ]]; then
-    echo "Error: Write permissions for $OUTPUT_DIR is disabled." >&2
-    exit 1
-fi
-```
+
 
 
 
